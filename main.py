@@ -29,19 +29,24 @@ if character_file_path.exists():
         entry_list.append(has_int(character_name))
         actor_name = re.sub(character_name, "", entry)
         entry_list.append(has_int(re.sub("\|", "", actor_name).strip()))
-        print(actor_name)
         data_entry_list.append(entry_list)
 
 total_seasons = 0
 for data_entry in data_entry_list:
-    print(f'Seasons: {data_entry[0]}\n'
-          f'Character Name: {data_entry[1]}\n'
-            f'Actor Name: {data_entry[2]}\n')
     if data_entry[0].isdigit():
         season_num = int(data_entry[0])
         total_seasons = total_seasons + season_num
-
 average_seasons_per_actor = total_seasons / len(data_entry_list)
 
-print(f'\nThe total seasons of all actors is {total_seasons}\n'
-      f'The average season per actor is {average_seasons_per_actor.__round__(2)}')
+input = int(input("Are you grading:\n"
+                  "1. Lab A\n"
+                  "2. Lab B\n"))
+
+if input == 1:
+    print(f'\nThe total seasons of all actors is {total_seasons}\n'
+          f'The average season per actor is {average_seasons_per_actor.__round__(2)}')
+elif input == 2:
+    for data_entry in data_entry_list:
+        print(f'Seasons: {data_entry[0]}\n'
+              f'Character Name: {data_entry[1]}\n'
+              f'Actor Name: {data_entry[2]}\n')
